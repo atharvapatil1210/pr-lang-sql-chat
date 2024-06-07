@@ -5,7 +5,7 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_community.utilities import SQLDatabase
 from langchain_core.output_parsers import StrOutputParser
 #from langchain_openai import ChatOpenAI
-#from langchain_groq import ChatGroq
+from langchain_groq import ChatGroq
 import streamlit as st
 
 def init_database(user: str, password: str, host: str, port: str, database: str) -> SQLDatabase:
@@ -37,7 +37,7 @@ def get_sql_chain(db):
     
   prompt = ChatPromptTemplate.from_template(template)
   
-  # llm = ChatOpenAI(model="gpt-4-0125-preview")
+  #llm = ChatOpenAI(model="gpt-4-0125-preview")
   llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0)
   
   def get_schema(_):
@@ -65,7 +65,7 @@ def get_response(user_query: str, db: SQLDatabase, chat_history: list):
   
   prompt = ChatPromptTemplate.from_template(template)
   
-  # llm = ChatOpenAI(model="gpt-4-0125-preview")
+  #llm = ChatOpenAI(model="gpt-4-0125-preview")
   llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0)
   
   chain = (
